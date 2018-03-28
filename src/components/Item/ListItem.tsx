@@ -44,6 +44,7 @@ class ListItem extends React.Component<Props, State> {
 
   render() {
     const { country } = this.props;
+
     return (
       <div
         className="country-card"

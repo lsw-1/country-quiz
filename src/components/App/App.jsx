@@ -48,8 +48,6 @@ const queryCountries = gql`
     countries(region: $region, name: $name) {
       Name
       Flag
-      CurrencyName
-      CurrencySymbol
     }
   }
 `;
@@ -73,6 +71,14 @@ const Search = () => (
               name=""
               id="search-inp"
             />
+            <select style={{ margin: "10px" }} id="region-inp">
+              <option value="">none</option>
+              <option value="Africa">Africa</option>
+              <option value="Americas">Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Oceania">Oceania</option>
+            </select>
             <button
               style={{
                 height: "40px",
@@ -86,7 +92,8 @@ const Search = () => (
                 const { data } = await client.query({
                   query: queryCountries,
                   variables: {
-                    name: document.getElementById("search-inp").value
+                    name: document.getElementById("search-inp").value,
+                    region: document.getElementById("region-inp").value
                   }
                 });
                 getCountries(data.countries);
@@ -94,11 +101,12 @@ const Search = () => (
             >
               ALLEZ!
             </button>
-            <h1>Score: {JSON.stringify(totalScore)} </h1>
+            <h1>Score: {totalScore} </h1>
           </div>
         )}
       </AppContext.Consumer>
     )}
   </ApolloConsumer>
 );
+
 export default App;
