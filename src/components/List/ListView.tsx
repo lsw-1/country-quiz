@@ -1,21 +1,17 @@
 import * as React from "react";
-// import { Query } from "react-apollo";
-// import gql from "graphql-tag";
+
 import { Country } from "../../types";
 import { ListItem } from "../";
 import "./ListView.css";
-import { AppContext } from "../App/App";
+import { AppContext } from "../../context/AppContext";
 
-export const ListView = ({ countries }) => {
-  const ls: [Country] | null =
-    countries &&
-    countries.map(c => (
-      <AppContext.Consumer key={c.Name}>
-        {({ addTotalScore }) => (
-          <ListItem country={c} addTotalScore={() => addTotalScore()} />
-        )}
-      </AppContext.Consumer>
-    ));
+interface Props {
+  countries: Country[] | null;
+}
+
+export const ListView: React.SFC<Props> = ({ countries }) => {
+  const ls =
+    countries && countries.map(c => <ListItem key={c.Name} country={c} />);
   return <div className="list">{ls}</div>;
 };
 
