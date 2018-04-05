@@ -14,14 +14,16 @@ export class ListItem extends React.Component<Props, State> {
     return (
       <div
         className="country-card"
-        style={{
-          backgroundColor:
-            this.state.answerState === ItemState.CORRECT_ANSWER
-              ? "#00ff00"
-              : this.state.answerState === ItemState.WRONG_ANSWER
-                ? "#ff0000"
-                : null
-        }}
+        style={
+          {
+            backgroundColor:
+              this.state.answerState === ItemState.CORRECT_ANSWER
+                ? "#00ff00"
+                : this.state.answerState === ItemState.WRONG_ANSWER
+                  ? "#ff0000"
+                  : null
+          } as any
+        }
       >
         <img className="img" src={country.Flag} />
         {this.state.answerState === ItemState.WRONG_ANSWER ||

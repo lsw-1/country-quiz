@@ -14,5 +14,5 @@ export const isCorrect = R.curry((guess: string, actual: string): boolean => {
   )(guessAsArr);
   const percentage = numOfMatch / actualAsArr.length;
   const Threshold = 0.69;
-  return percentage > Threshold ? true : false;
+  return percentage > Threshold;
 });
